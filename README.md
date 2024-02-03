@@ -1,7 +1,9 @@
 # MaterialBanner [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialBanner-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7605)
+
 > A banner displays a prominent message and related optional actions.
 
-MaterialBanner is a library that provides an implementation of the banner widget from the Material design.
+MaterialBanner is a library that provides an implementation of the banner widget from the Material
+design.
 
 [Banners - Material Design](https://material.io/design/components/banners.html).
 
@@ -15,29 +17,26 @@ You can download the sample app here.
 
 # Setup
 
-## Legacy (version 1.2.0): Add the gradle dependency
-
 ```
-jcenter {
-    content {
-        includeGroup "com.sergivonavi"
-    }
-}
-```
-
-```
-implementation "com.sergivonavi:materialbanner:1.2.0"
+  dependencyResolutionManagement {
+      repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+      repositories {
+          mavenCentral()
+          maven { url 'https://jitpack.io' }
+      }
+  }
 ```
 
-## Latest (version 2.0.0)
-
-Download sources and add the MaterialBanner library to your project.
+```
+implementation("com.github.apollo29:MaterialBanner:2.0.0")
+```
 
 ## Check your theme
 
 In order to use this banner your app theme should inherit from a Material Components theme.
 
-More about that: [Getting Started - Material Components for Android](https://material.io/develop/android/docs/getting-started/).
+More about
+that: [Getting Started - Material Components for Android](https://material.io/develop/android/docs/getting-started/).
 
 ## Create your banner
 
@@ -107,18 +106,21 @@ __DO NOT forget__ to call _Builder#setParent(...)_.
 Pass here a ViewGroup that will be a parent for your banner.
 
 Or you can use:
+
 * _setParent(ViewGroup, int)_ to specify the index of the banner in ViewGroup's hierarchy;
 * _setParent(ViewGroup, int, ViewGroup.LayoutParams)_ to change the default LayoutParams.
 
 ### Note
 
-You don't need to set both left and right buttons: you can set one of them (doesn't matter which one).
+You don't need to set both left and right buttons: you can set one of them (doesn't matter which
+one).
 
 # Additional setup
 
 ## Add listeners
 
-If you want to know when your banner was shown or dismissed you can set appropriate listeners from [BannerInterface](library/src/main/java/com/sergivonavi/materialbanner/BannerInterface.java):
+If you want to know when your banner was shown or dismissed you can set appropriate listeners
+from [BannerInterface](library/src/main/java/com/sergivonavi/materialbanner/BannerInterface.java):
 
 ```
 banner.setOnDismissListener(new BannerInterface.OnDismissListener() {
@@ -157,13 +159,15 @@ new Banner.Builder(context)
 
 # Styling
 
-For the style guidelines read [Banners - theming](https://material.io/design/components/banners.html#theming).
+For the style guidelines
+read [Banners - theming](https://material.io/design/components/banners.html#theming).
 
 ## Changing style of a single banner
 
 ### In your `layout.xml`
 
 Available attributes:
+
 * backgroundColor
 * iconTint
 * messageTextAppearance
@@ -191,7 +195,9 @@ Usage:
 ```
 
 ### From the code
+
 Available methods:
+
 * setBackgroundColor
 * setIconTintColor
 * setMessageTextAppearance
@@ -255,28 +261,34 @@ And create your custom style (you can inherit from the provided default banner s
 If you want to do something like this:
 ![Banner in wide layout](https://storage.googleapis.com/spec-host-backup/mio-design%2Fassets%2F170Vf6civyniR4ROILotY0usRMAB0lgSL%2Fbanners-placement-desktop.png)
 You can change the content's padding using provided attributes or methods:
+
 * attr: contentPaddingStart
 * attr: contentPaddingEnd
 * setContentPaddingStart
 * setContentPaddingEnd
 
 But account for the default padding:
-* the end padding is always __16dp__ (a distance between the button's last character and the end edge of a banner)
+
+* the end padding is always __16dp__ (a distance between the button's last character and the end
+  edge of a banner)
 * the start padding depends on a user's device
 
 On mobile:
+
 * the start padding is always __16dp__ regardless if icon set or not
 
 On tablet (sw720dp):
+
 * the start padding depends whether icon set or not
-  * if set then __16dp__
-  * otherwise __24dp__
-  
+    * if set then __16dp__
+    * otherwise __24dp__
+
 See [Banners - specs](https://material.io/design/components/banners.html#specs) for visualisation.
 
 ### Example
 
-1. If the content of your screen has __32dp__ margin from both sides and you set an icon then you can set __16dp__ padding for your banner:
+1. If the content of your screen has __32dp__ margin from both sides and you set an icon then you
+   can set __16dp__ padding for your banner:
 
 ```
 app:contentPaddingEnd="16dp"
@@ -289,16 +301,18 @@ banner.setContentPaddingEnd(R.dimen.banner_content_padding);
 ```
 
 2. Everything is the same but no icon:
+
 * for mobile devices - __16dp__ padding from both sides;
 * for tablets
-  * __16dp__ end padding
-  * __8dp__ start padding (32dp margin - 24dp margin of the message)
-  
+    * __16dp__ end padding
+    * __8dp__ start padding (32dp margin - 24dp margin of the message)
+
 See the sample app for example.
 
 ### Note
 
-__DO NOT__ set padding directly using the default padding attributes or methods. It will break the appearance of the widget.
+__DO NOT__ set padding directly using the default padding attributes or methods. It will break the
+appearance of the widget.
 
 # License
 
